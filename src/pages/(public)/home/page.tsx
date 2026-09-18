@@ -74,61 +74,61 @@ export default function Home() {
 	}, [])
 
 	return (
-		<div className="min-h-screen bg-[#101010] font-['Cascadia_Mono',monospace] text-[#f3f3f3] selection:bg-white selection:text-black">
+		<div className="min-h-screen bg-[#101010] text-[#f3f3f3] selection:bg-white selection:text-black">
 			<header className="hidden p-2 border-b border-[#292929] md:block">
-				<div className="mx-auto flex h-full w-full max-w-[680px] items-center justify-between">
-					<Link
+				<div className="mx-auto flex h-full w-full max-w-170 items-center justify-between">
+					<a
 						className="text-2xl font-bold"
-						to="#whoami"
+						href="#whoami"
 						onClick={handleNavClick}
 					>
 						JP <span className="text-[#777]">~</span>
-					</Link>
+					</a>
 					<nav className="flex gap-8 text-[15px] text-[#cfcfcf]">
-						<Link
+						<a
 							className="flex flex-col items-center gap-0.5"
-							to="#whoami"
+							href="#whoami"
 							onClick={handleNavClick}
 						>
 							<UserRound size={16} />
 							./whoami
-						</Link>
-						<Link
+						</a>
+						<a
 							className="flex flex-col items-center gap-0.5"
-							to="#stack"
+							href="#stack"
 							onClick={handleNavClick}
 						>
 							<Layers3 size={16} />
 							./stack
-						</Link>
-						<Link
+						</a>
+						<a
 							className="flex flex-col items-center gap-0.5"
-							to="#projects"
+							href="#projects"
 							onClick={handleNavClick}
 						>
 							<FolderCode size={16} />
 							./projects
-						</Link>
-						<Link
+						</a>
+						<a
 							className="flex flex-col items-center gap-0.5"
-							to="#contact"
+							href="#contact"
 							onClick={handleNavClick}
 						>
 							<Mail size={16} />
 							./ping-me
-						</Link>
+						</a>
 					</nav>
 				</div>
 			</header>
 
-			<main className="mx-auto max-w-[680px] px-7 pb-28 pt-8 md:px-0 md:pb-16 md:pt-10">
+			<main className="mx-auto max-w-170 px-7 pb-28 pt-8 md:px-0 md:pb-16 md:pt-10">
 				<section id="whoami" className="mb-12 scroll-mt-8 md:mb-20">
 					<h1 className="mb-7 flex items-center gap-2 text-[34px] font-bold md:mb-8 md:text-[36px]">
 						$ whoami
 					</h1>
 					<div className="flex flex-col items-stretch gap-6 md:grid md:grid-cols-[270px_1fr] md:items-center md:gap-14">
 						<img
-							className="mx-auto aspect-square w-[166px] rounded-full object-cover md:mx-0 md:w-[270px]"
+							className="mx-auto aspect-square w-41.5 rounded-full object-cover md:mx-0 md:w-67.5"
 							src="/me.png"
 							alt="Joao Pedro Cruz"
 						/>
@@ -145,7 +145,7 @@ export default function Home() {
 							</p>
 							<div className="rounded-xl border border-[#454545] p-4 text-[20px] md:text-[20px]">
 								<strong className="text-[22px]">&gt; Currently</strong>
-								<p className="mt-2 leading-[1.25] text-[#909090]">
+								<p className="mt-2 leading-tight text-[#909090]">
 									-&gt; Building Mimo Marmitas
 									<br />
 									-&gt; Learning Software Architecture
@@ -164,7 +164,7 @@ export default function Home() {
 					<div className="flex flex-wrap justify-between gap-x-2.5 gap-y-3.5 md:justify-center md:gap-x-4 md:gap-y-4">
 						{stack.map(({ name, mark, icon: Icon, color }) => (
 							<div
-								className="grid h-[73px] w-[calc((100%-20px)/3)] place-items-center rounded-xl border border-[#292929] md:w-20"
+								className="grid h-18.25 w-[calc((100%-20px)/3)] place-items-center rounded-xl border border-[#292929] md:w-20"
 								key={name}
 								title={name}
 							>
@@ -180,7 +180,7 @@ export default function Home() {
 									/>
 								) : (
 									<span
-										className={`grid h-[53px] min-w-[53px] place-items-center rounded-xl px-1 text-center text-2xl font-bold ${color}`}
+										className={`grid h-13.25 min-w-13.25 place-items-center rounded-xl px-1 text-center text-2xl font-bold ${color}`}
 									>
 										{mark}
 									</span>
@@ -194,7 +194,7 @@ export default function Home() {
 					<h2 className="mb-6 flex items-center gap-2 text-[34px] font-bold md:mb-7 md:text-[36px]">
 						$ ls projects
 					</h2>
-					<article className="min-h-[205px] w-full rounded-xl border border-[#303030] p-4 md:w-[304px]">
+					<article className="min-h-51.25 w-full rounded-xl border border-[#303030] p-4 md:w-76">
 						<div className="mb-4 flex justify-between text-[21px] font-bold">
 							<span>mimo-marmitas</span>
 							<ArrowUpRight size={18} className="text-[#777]" />
@@ -228,7 +228,7 @@ export default function Home() {
 					<div className="mb-6 grid gap-2 md:grid-cols-2 md:gap-4">
 						{socials.map((social) => (
 							<a
-								className="flex min-h-[67px] items-center gap-3 rounded-xl border border-[#303030] p-2.5 transition-colors hover:border-[#666]"
+								className="flex min-h-16.75 items-center gap-3 rounded-xl border border-[#303030] p-2.5 transition-colors hover:border-[#666]"
 								href={social.href}
 								key={social.name}
 							>
@@ -257,7 +257,7 @@ export default function Home() {
 						<label className="text-[20px] font-bold">
 							Name
 							<input
-								className="mt-1 block w-full rounded-lg border border-[#333] bg-transparent p-3 font-['Cascadia_Mono',monospace] text-[18px] text-white outline-none focus:border-[#777]"
+								className="mt-1 block w-full rounded-lg border border-[#333] bg-transparent p-3 text-[18px] text-white outline-none focus:border-[#777]"
 								type="text"
 								placeholder="Your name"
 							/>
@@ -265,7 +265,7 @@ export default function Home() {
 						<label className="text-[20px] font-bold">
 							Email
 							<input
-								className="mt-1 block w-full rounded-lg border border-[#333] bg-transparent p-3 font-['Cascadia_Mono',monospace] text-[18px] text-white outline-none focus:border-[#777]"
+								className="mt-1 block w-full rounded-lg border border-[#333] bg-transparent p-3 text-[18px] text-white outline-none focus:border-[#777]"
 								type="email"
 								placeholder="your@email.com"
 							/>
@@ -273,13 +273,13 @@ export default function Home() {
 						<label className="text-[20px] font-bold">
 							Message
 							<textarea
-								className="mt-1 block w-full resize-y rounded-lg border border-[#333] bg-transparent p-3 font-['Cascadia_Mono',monospace] text-[18px] text-white outline-none focus:border-[#777]"
+								className="mt-1 block w-full resize-y rounded-lg border border-[#333] bg-transparent p-3 text-[18px] text-white outline-none focus:border-[#777]"
 								placeholder="Write your message..."
 								rows={3}
 							/>
 						</label>
 						<button
-							className="mt-0 flex items-center justify-center gap-1 rounded-md bg-[#c7c7c7] p-3 font-['Cascadia_Mono',monospace] text-lg font-bold text-[#111] transition-colors hover:bg-white"
+							className="mt-0 flex items-center justify-center gap-1 rounded-md bg-[#c7c7c7] p-3 text-lg font-bold text-[#111] transition-colors hover:bg-white"
 							type="submit"
 						>
 							<Send size={13} />
@@ -290,7 +290,7 @@ export default function Home() {
 			</main>
 
 			<nav
-				className={`fixed inset-x-0 bottom-0 z-20 flex h-[68px] items-center justify-around border-t border-[#363636] bg-[#101010]/95 px-2 backdrop-blur transition-transform duration-300 md:hidden ${isMobileMenuVisible ? "translate-y-0" : "translate-y-full"}`}
+				className={`fixed inset-x-0 bottom-0 z-20 flex h-17 items-center justify-around border-t border-[#363636] bg-[#101010]/95 px-2 backdrop-blur transition-transform duration-300 md:hidden ${isMobileMenuVisible ? "translate-y-0" : "translate-y-full"}`}
 			>
 				<Link
 					className="flex flex-col items-center gap-1 text-[16px] text-[#d5d5d5]"
