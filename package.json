@@ -6,11 +6,12 @@
 	"scripts": {
 		"dev": "vite",
 		"build": "tsc -b && vite build",
-		"lint": "oxlint",
+		"lint": "biome check src/App.tsx src/main.tsx src/pages",
 		"preview": "vite preview"
 	},
 	"dependencies": {
 		"@tailwindcss/vite": "4.3.3",
+		"lucide-react": "1.47.0",
 		"react": "^19.2.8",
 		"react-dom": "^19.2.8",
 		"react-router-dom": "7.18.4",
