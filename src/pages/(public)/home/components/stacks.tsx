@@ -13,13 +13,17 @@ export default function Stacks({ stacks }: StackProps) {
 			</h2>
 			<div className="flex flex-wrap justify-between gap-x-2.5 gap-y-3.5 md:justify-center md:gap-x-4 md:gap-y-4">
 				{stacks ? (
-					stacks.map(({ id, name, iconUrl }) => (
+					stacks.map((stack) => (
 						<div
-							className="rounded-2xl p-3 border border-[#292929] md:w-24"
-							key={id}
-							title={name}
+							className="flex aspect-square items-center justify-center rounded-2xl border border-[#292929] p-1 transition-colors hover:border-[#555]"
+							key={stack.name}
+							title={stack.name}
 						>
-							<img className="w-full rounded-2xl" src={iconUrl} alt={name} />
+							<img
+								className="h-3/5 w-3/5 object-contain"
+								src={stack.iconUrl}
+								alt={stack.name}
+							/>
 						</div>
 					))
 				) : (

@@ -12,9 +12,9 @@ export default function Header() {
 						<UserRound size={20} />
 						./whoami
 					</a>
-					<a className="flex flex-col items-center gap-0.5" href="#stack">
+					<a className="flex flex-col items-center gap-0.5" href="#stacks">
 						<Layers3 size={20} />
-						./stack
+						./stacks
 					</a>
 					<a className="flex flex-col items-center gap-0.5" href="#projects">
 						<FolderCode size={20} />
