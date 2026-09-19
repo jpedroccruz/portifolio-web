@@ -9,41 +9,10 @@ import ResponsiveNavBar from "./components/responsive-nav-bar"
 import Stacks from "./components/stacks"
 import Whoami from "./components/whoami"
 
-const stacks: Stack[] = [
-	{
-		id: 1,
-		name: "TypeScript",
-		iconUrl:
-			"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-taCMXs6MhlbJYznaYBla370M0jTXEKcRpXWsjKVK27Vodnr9XiGtNV4SNaHEo8v4OpwP_hxNp5sCodcXnm0GaywE_1zCW4krJUptVQ&s=10",
-	},
-	{
-		id: 2,
-		name: "Docker",
-		iconUrl:
-			"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-taCMXs6MhlbJYznaYBla370M0jTXEKcRpXWsjKVK27Vodnr9XiGtNV4SNaHEo8v4OpwP_hxNp5sCodcXnm0GaywE_1zCW4krJUptVQ&s=10",
-	},
-	{
-		id: 3,
-		name: "Linux",
-		iconUrl:
-			"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-taCMXs6MhlbJYznaYBla370M0jTXEKcRpXWsjKVK27Vodnr9XiGtNV4SNaHEo8v4OpwP_hxNp5sCodcXnm0GaywE_1zCW4krJUptVQ&s=10",
-	},
-]
-
-const projects: Project[] = [
-	{
-		id: 1,
-		name: "mimo-marmitas",
-		description:
-			"Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consequuntur quae possimus pariatur illum sit porro, fuga, omnis, suscipit magni iste harum eius! Obcaecati eaque ex laboriosam dolore maiores vitae sed.",
-		publishedAt: new Date(),
-		gitHubUrl: null,
-		thumbnailUrl: null,
-		stacks,
-	},
-]
-
 export default function Home() {
+	const [projects, setProjects] = useState(null)
+	const [stacks, setStacks] = useState(null)
+
 	const [isMobileMenuVisible, setIsMobileMenuVisible] = useState(true)
 	const lastScrollY = useRef(0)
 
@@ -51,11 +20,8 @@ export default function Home() {
 		const handleScroll = () => {
 			const currentScrollY = window.scrollY
 
-			if (currentScrollY <= 8) {
-				setIsMobileMenuVisible(true)
-			} else {
-				setIsMobileMenuVisible(currentScrollY < lastScrollY.current)
-			}
+			if (currentScrollY <= 8) setIsMobileMenuVisible(true)
+			else setIsMobileMenuVisible(currentScrollY < lastScrollY.current)
 
 			lastScrollY.current = currentScrollY
 		}
