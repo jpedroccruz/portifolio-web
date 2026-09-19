@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from "react"
 import Footer from "../../../components/footer"
-import type { Project } from "../../../types/interfaces/project"
-import type { Stack } from "../../../types/interfaces/stack"
+import useStack from "../../../hooks/useStacks"
 import Contact from "./components/contact"
 import Header from "./components/header"
 import Projects from "./components/projects"
@@ -10,8 +9,8 @@ import Stacks from "./components/stacks"
 import Whoami from "./components/whoami"
 
 export default function Home() {
-	const [projects, setProjects] = useState(null)
-	const [stacks, setStacks] = useState(null)
+	const [projects] = useState(null)
+	const { data: stacks } = useStack()
 
 	const [isMobileMenuVisible, setIsMobileMenuVisible] = useState(true)
 	const lastScrollY = useRef(0)
@@ -36,7 +35,7 @@ export default function Home() {
 
 			<main className="flex flex-col mx-auto max-w-240 px-7 gap-9 md:px-0 md:pb-16 md:pt-10 md:gap-28">
 				<Whoami />
-				<Stacks stacks={stacks} />
+				<Stacks stacks={stacks ?? null} />
 				<Projects projects={projects} />
 				<Contact />
 			</main>

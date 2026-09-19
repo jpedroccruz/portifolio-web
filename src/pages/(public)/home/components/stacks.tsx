@@ -15,12 +15,12 @@ export default function Stacks({ stacks }: StackProps) {
 				{stacks ? (
 					stacks.map((stack) => (
 						<div
-							className="flex aspect-square items-center justify-center rounded-2xl border border-[#292929] p-1 transition-colors hover:border-[#555]"
-							key={stack.name}
+							className="rounded-2xl p-3 border border-[#292929] md:w-24"
+							key={stack.id}
 							title={stack.name}
 						>
 							<img
-								className="h-3/5 w-3/5 object-contain"
+								className="w-full rounded-2xl"
 								src={stack.iconUrl}
 								alt={stack.name}
 							/>
