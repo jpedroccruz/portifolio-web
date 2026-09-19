@@ -3,14 +3,19 @@ import type { Project } from "../../../../types/interfaces/project"
 
 type ProjectsProps = {
 	projects: Project[] | null
+	title: string
 	showAddButton?: boolean
 }
 
-export default function Projects({ projects, showAddButton }: ProjectsProps) {
+export default function Projects({
+	projects,
+	showAddButton,
+	title,
+}: ProjectsProps) {
 	return (
 		<section>
 			<h2 className="mb-7 flex items-center gap-2 text-[34px] font-bold md:mb-8 md:text-[36px]">
-				# ls projects
+				{title}
 			</h2>
 			<div className="flex flex-wrap justify-between gap-x-2.5 gap-y-3.5 md:justify-center md:gap-x-4 md:gap-y-4">
 				{projects ? (

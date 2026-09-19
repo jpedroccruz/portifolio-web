@@ -1,4 +1,4 @@
-import { ArrowLeft, ArrowUpRight, CircleX, Plus } from "lucide-react"
+import { ArrowLeft } from "lucide-react"
 import Footer from "../../../components/footer"
 import useProject from "../../../hooks/use-project"
 import useStack from "../../../hooks/use-stacks"
@@ -20,8 +20,12 @@ export default function Root() {
 					<span>return {"<Home/>"}</span>
 				</a>
 
-				<Stacks stacks={stacks ?? null} showAddButton />
-				<Projects projects={projects ?? null} showAddButton />
+				<Stacks stacks={stacks ?? null} title="# cat stacks" showAddButton />
+				<Projects
+					projects={projects ?? null}
+					title="# ls projects"
+					showAddButton
+				/>
 			</main>
 
 			<Footer />

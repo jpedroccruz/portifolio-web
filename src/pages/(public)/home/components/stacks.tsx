@@ -3,14 +3,15 @@ import type { Stack } from "../../../../types/interfaces/stack"
 
 type StackProps = {
 	stacks: Stack[] | null
+	title: string
 	showAddButton?: boolean
 }
 
-export default function Stacks({ stacks, showAddButton }: StackProps) {
+export default function Stacks({ stacks, showAddButton, title }: StackProps) {
 	return (
 		<section>
 			<h1 className="mb-7 flex items-center gap-2 text-[34px] font-bold md:mb-8 md:text-[36px]">
-				# cat stacks
+				{title}
 			</h1>
 			<div className="flex items-centerflex flex-wrap justify-between gap-x-2.5 gap-y-3.5 md:justify-center md:gap-x-4 md:gap-y-4">
 				{stacks ? (

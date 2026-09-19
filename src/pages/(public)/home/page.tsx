@@ -36,8 +36,8 @@ export default function Home() {
 
 			<main className="flex flex-col mx-auto max-w-240 px-7 gap-9 md:px-0 md:pb-16 md:pt-10 md:gap-28">
 				<Whoami />
-				<Stacks stacks={stacks ?? null} />
-				<Projects projects={projects ?? null} />
+				<Stacks stacks={stacks ?? null} title="$ cat stacks" />
+				<Projects projects={projects ?? null} title="$ ls projects" />
 				<Contact />
 			</main>
 
