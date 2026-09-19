@@ -9,19 +9,19 @@ export default function Header() {
 				</a>
 				<nav className="flex gap-8 text-[15px] text-[#cfcfcf]">
 					<a className="flex flex-col items-center gap-0.5" href="#whoami">
-						<UserRound size={16} />
+						<UserRound size={20} />
 						./whoami
 					</a>
 					<a className="flex flex-col items-center gap-0.5" href="#stack">
-						<Layers3 size={16} />
+						<Layers3 size={20} />
 						./stack
 					</a>
 					<a className="flex flex-col items-center gap-0.5" href="#projects">
-						<FolderCode size={16} />
+						<FolderCode size={20} />
 						./projects
 					</a>
 					<a className="flex flex-col items-center gap-0.5" href="#contact">
-						<Mail size={16} />
+						<Mail size={20} />
 						./ping-me
 					</a>
 				</nav>
