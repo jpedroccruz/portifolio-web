@@ -1,6 +1,6 @@
 export default function Footer() {
 	return (
-		<footer className="flex min-h-11 items-center justify-between border-t border-[#363636] px-7 text-[12px] text-[#777] md:px-[5%]">
+		<footer className="bottom-0 mt-auto flex min-h-11 w-full items-center justify-between border-t border-[#363636] px-7 text-[12px] text-[#777] md:px-[5%]">
 			<span className="flex items-center gap-3">
 				<a
 					href="https://www.linkedin.com/in/jpedroccruz"
