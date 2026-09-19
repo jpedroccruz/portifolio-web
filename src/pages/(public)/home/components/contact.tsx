@@ -1,6 +1,28 @@
 import { ChevronRight, Send } from "lucide-react"
+import { useState } from "react"
+import useCreateMessage from "../../../../hooks/use-create-message"
+import type { Message } from "../../../../types/interfaces/message"
 
 export default function Contact() {
+	const [message, setMessage] = useState<Message>({
+		name: "",
+		email: "",
+		message: "",
+	})
+	const [isSent, setIsSent] = useState(false)
+	const { mutate, isPending } = useCreateMessage()
+
+	function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+		event.preventDefault()
+		setIsSent(false)
+		mutate(message, {
+			onSuccess: () => {
+				setMessage({ name: "", email: "", message: "" })
+				setIsSent(true)
+			},
+		})
+	}
+
 	return (
 		<section id="contact">
 			<h2 className="mb-6 flex items-center gap-2 text-[34px] font-bold md:mb-7 md:text-[36px]">
@@ -41,15 +63,25 @@ export default function Contact() {
 				</a>
 			</div>
 			<h3 className="mb-3 text-[24px] font-bold">{">"} Or send me a message</h3>
-			<form
-				className="flex flex-col gap-2.5"
-				onSubmit={(event) => event.preventDefault()}
-			>
+			{isSent && (
+				<p className="mb-3 text-[#9fd18b]" role="status">
+					Message sent successfully.
+				</p>
+			)}
+			<form className="flex flex-col gap-2.5" onSubmit={handleSubmit}>
 				<label className="text-[20px] font-bold">
 					Name
 					<input
 						className="mt-1 block w-full rounded-lg border border-[#333] bg-transparent p-3 text-[18px] text-white outline-none focus:border-[#777]"
 						type="text"
+						required
+						value={message.name}
+						onChange={(event) =>
+							setMessage((current) => ({
+								...current,
+								name: event.target.value,
+							}))
+						}
 						placeholder="Your name"
 					/>
 				</label>
@@ -58,6 +90,14 @@ export default function Contact() {
 					<input
 						className="mt-1 block w-full rounded-lg border border-[#333] bg-transparent p-3 text-[18px] text-white outline-none focus:border-[#777]"
 						type="email"
+						required
+						value={message.email}
+						onChange={(event) =>
+							setMessage((current) => ({
+								...current,
+								email: event.target.value,
+							}))
+						}
 						placeholder="your@email.com"
 					/>
 				</label>
@@ -65,6 +105,14 @@ export default function Contact() {
 					Message
 					<textarea
 						className="mt-1 block w-full resize-y rounded-lg border border-[#333] bg-transparent p-3 text-[18px] text-white outline-none focus:border-[#777]"
+						value={message.message}
+						required
+						onChange={(event) =>
+							setMessage((current) => ({
+								...current,
+								message: event.target.value,
+							}))
+						}
 						placeholder="Write your message..."
 						rows={3}
 					/>
@@ -72,9 +120,10 @@ export default function Contact() {
 				<button
 					className="mt-2 flex items-center justify-center gap-1 rounded-md bg-[#c7c7c7] p-3 text-lg font-bold text-[#111] transition-colors hover:bg-white cursor-pointer"
 					type="submit"
+					disabled={isPending}
 				>
 					<Send size={13} />
-					send message_
+					{isPending ? "sending_" : "send message_"}
 				</button>
 			</form>
 		</section>
