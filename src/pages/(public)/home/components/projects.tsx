@@ -13,7 +13,7 @@ export default function Projects({
 	title,
 }: ProjectsProps) {
 	return (
-		<section>
+		<section id="projects">
 			<h2 className="mb-7 flex items-center gap-2 text-[34px] font-bold md:mb-8 md:text-[36px]">
 				{title}
 			</h2>

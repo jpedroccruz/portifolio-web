@@ -9,7 +9,7 @@ type StackProps = {
 
 export default function Stacks({ stacks, showAddButton, title }: StackProps) {
 	return (
-		<section>
+		<section id="stacks">
 			<h1 className="mb-7 flex items-center gap-2 text-[34px] font-bold md:mb-8 md:text-[36px]">
 				{title}
 			</h1>
