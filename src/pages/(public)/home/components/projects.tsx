@@ -18,7 +18,7 @@ export default function Projects({
 				{title}
 			</h2>
 			<div className="flex flex-wrap justify-between gap-x-2.5 gap-y-3.5 md:justify-center md:gap-x-4 md:gap-y-4">
-				{projects ? (
+				{projects?.length ? (
 					projects.map((project) => {
 						return (
 							<article

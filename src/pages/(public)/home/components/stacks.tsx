@@ -14,7 +14,7 @@ export default function Stacks({ stacks, showAddButton, title }: StackProps) {
 				{title}
 			</h1>
 			<div className="flex items-centerflex flex-wrap justify-between gap-x-2.5 gap-y-3.5 md:justify-center md:gap-x-4 md:gap-y-4">
-				{stacks ? (
+				{stacks?.length ? (
 					stacks.map((stack) => (
 						<div
 							className="rounded-2xl p-3 border border-[#292929] md:w-24"
