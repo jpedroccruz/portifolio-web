@@ -1,5 +1,6 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 import { BrowserRouter, Route, Routes } from "react-router-dom"
+import { AuthProvider } from "./contexts/auth-context"
 import Sudo from "./pages/(guest)/sudo/page"
 import Root from "./pages/(private)/root/page"
 import Home from "./pages/(public)/home/page"
@@ -11,19 +12,21 @@ const client = new QueryClient()
 export default function App() {
 	return (
 		<QueryClientProvider client={client}>
-			<BrowserRouter>
-				<Routes>
-					<Route path="/" element={<Home />} />
+			<AuthProvider>
+				<BrowserRouter>
+					<Routes>
+						<Route path="/" element={<Home />} />
 
-					<Route element={<GuestRoutes />}>
-						<Route path="/sudo" element={<Sudo />} />
-					</Route>
+						<Route element={<GuestRoutes />}>
+							<Route path="/sudo" element={<Sudo />} />
+						</Route>
 
-					<Route element={<PrivateRoutes />}>
-						<Route path="/root" element={<Root />} />
-					</Route>
-				</Routes>
-			</BrowserRouter>
+						<Route element={<PrivateRoutes />}>
+							<Route path="/root" element={<Root />} />
+						</Route>
+					</Routes>
+				</BrowserRouter>
+			</AuthProvider>
 		</QueryClientProvider>
 	)
 }
