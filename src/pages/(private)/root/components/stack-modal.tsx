@@ -42,17 +42,23 @@ export default function StackModal({ onClose, editingStack }: StackModalProps) {
 		}))
 	}
 
+	function handleSuccess() {
+		setFormData(INIT_FORM)
+		onClose()
+	}
+
 	function handleSubmit(event: SubmitEvent<HTMLFormElement>) {
 		event.preventDefault()
 
 		if (editingStack) {
-			updateStack({ id: editingStack.id, data: formData })
+			updateStack(
+				{ id: editingStack.id, data: formData },
+				{ onSuccess: handleSuccess },
+			)
 			return
 		}
 
-		createStack(formData)
-
-		setFormData(INIT_FORM)
+		createStack(formData, { onSuccess: handleSuccess })
 	}
 
 	return (
@@ -87,7 +93,9 @@ export default function StackModal({ onClose, editingStack }: StackModalProps) {
 					{editingStack && (
 						<button
 							className="text-red-400 hover:text-red-300"
-							onClick={() => deleteStack(editingStack.id)}
+							onClick={() =>
+								deleteStack(editingStack.id, { onSuccess: handleSuccess })
+							}
 							type="button"
 						>
 							&gt; DELETE /stack

@@ -51,16 +51,23 @@ export default function ProjectModal({
 		}))
 	}
 
+	function handleSuccess() {
+		setFormData(INIT_FORM)
+		onClose()
+	}
+
 	function handleSubmit(event: SubmitEvent<HTMLFormElement>) {
 		event.preventDefault()
 
 		if (editingProject) {
-			updateProject({ id: editingProject.id, data: formData })
+			updateProject(
+				{ id: editingProject.id, data: formData },
+				{ onSuccess: handleSuccess },
+			)
 			return
 		}
 
-		createProject(formData)
-		setFormData(INIT_FORM)
+		createProject(formData, { onSuccess: handleSuccess })
 	}
 
 	return (
@@ -131,7 +138,9 @@ export default function ProjectModal({
 					{editingProject && (
 						<button
 							className="text-red-400 hover:text-red-300"
-							onClick={() => deleteProject(editingProject.id)}
+							onClick={() =>
+								deleteProject(editingProject.id, { onSuccess: handleSuccess })
+							}
 							type="button"
 						>
 							&gt; DELETE /project
