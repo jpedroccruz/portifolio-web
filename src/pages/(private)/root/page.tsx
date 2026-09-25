@@ -1,21 +1,58 @@
 import { ArrowLeft } from "lucide-react"
+import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import Footer from "../../../components/footer"
 import useLogout from "../../../hooks/use-logout"
 import useProject from "../../../hooks/use-project"
 import useStack from "../../../hooks/use-stacks"
+import type { Project } from "../../../types/interfaces/project"
+import type { Stack } from "../../../types/interfaces/stack"
 import Projects from "../../(public)/home/components/projects"
 import Stacks from "../../(public)/home/components/stacks"
+import ProjectModal from "./components/project-modal"
+import StackModal from "./components/stack-modal"
 
 export default function Root() {
 	const { data: projects } = useProject()
 	const { data: stacks } = useStack()
 	const { mutate: logout } = useLogout()
 	const navigate = useNavigate()
+	const [isProjectModalOpen, setIsProjectModalOpen] = useState(false)
+	const [isStackModalOpen, setIsStackModalOpen] = useState(false)
+	const [editingStack, setEditingStack] = useState<Stack | null>(null)
+	const [editingProject, setEditingProject] = useState<Project | null>(null)
 
 	function handleLogout() {
 		logout()
 		navigate("/")
+	}
+
+	function createProject() {
+		setEditingProject(null)
+		setIsProjectModalOpen(true)
+	}
+
+	function editProject(project: Project) {
+		setEditingProject(project)
+		setIsProjectModalOpen(true)
+	}
+
+	function closeProjectModal() {
+		setIsProjectModalOpen(false)
+	}
+
+	function createStack() {
+		setEditingStack(null)
+		setIsStackModalOpen(true)
+	}
+
+	function editStack(stack: Stack) {
+		setEditingStack(stack)
+		setIsStackModalOpen(true)
+	}
+
+	function closeStackModal() {
+		setIsStackModalOpen(false)
 	}
 
 	return (
@@ -39,14 +76,31 @@ export default function Root() {
 					</button>
 				</div>
 
-				<Stacks stacks={stacks ?? null} title="# cat stacks" showAddButton />
+				<Stacks
+					stacks={stacks ?? null}
+					title="# cat stacks"
+					showAddButton
+					onAddClick={createStack}
+					onStackClick={editStack}
+				/>
 				<Projects
 					projects={projects ?? null}
 					title="# ls projects"
 					showAddButton
+					onAddClick={createProject}
+					onProjectClick={editProject}
 				/>
 			</main>
 
+			{isStackModalOpen && (
+				<StackModal editingStack={editingStack} onClose={closeStackModal} />
+			)}
+			{isProjectModalOpen && (
+				<ProjectModal
+					editingProject={editingProject}
+					onClose={closeProjectModal}
+				/>
+			)}
 			<Footer />
 		</div>
 	)
