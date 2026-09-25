@@ -5,7 +5,7 @@ export default function PrivateRoutes() {
 	const { data: user, isLoading } = useMe()
 
 	if (isLoading) return <>Carregando...</>
-	if (!user) return <Navigate to={"/sudo"} />
+	if (!user) return <Navigate to={"/sudo"} replace />
 
 	return <Outlet />
 }
