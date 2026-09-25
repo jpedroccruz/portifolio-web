@@ -6,5 +6,6 @@ export default function useStack() {
 	return useQuery({
 		queryKey: ["stack"],
 		queryFn: async () => apiFetch<Stack[]>("/stacks"),
+		refetchOnWindowFocus: false,
 	})
 }

@@ -15,5 +15,6 @@ export default function useMe() {
 				canRefresh: true,
 			}),
 		retry: false,
+		refetchOnWindowFocus: false,
 	})
 }

@@ -6,5 +6,6 @@ export default function useProject() {
 	return useQuery({
 		queryKey: ["project"],
 		queryFn: async () => apiFetch<Project[]>("/projects"),
+		refetchOnWindowFocus: false,
 	})
 }
