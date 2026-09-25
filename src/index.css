@@ -5,3 +5,8 @@
 	font-family: "Cascadia Mono", sans-serif;
 	scroll-behavior: smooth;
 }
+
+button,
+a {
+	cursor: pointer;
+}
