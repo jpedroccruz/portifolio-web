@@ -5,9 +5,8 @@ import { apiFetch } from "./api-fetch"
 
 export type UpdateProjectInput = {
 	id: number
-	data: Pick<Project, "name" | "description"> & {
-		gitHubUrl: string
-		thumbnailUrl: string
+	data: Pick<Project, "name" | "description" | "gitHubUrl" | "thumbnailUrl" | "publishedAt"> & {
+		stackIds: number[]
 	}
 }
 

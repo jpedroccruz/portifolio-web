@@ -99,6 +99,7 @@ export default function Root() {
 				<ProjectModal
 					editingProject={editingProject}
 					onClose={closeProjectModal}
+					stacks={stacks || []}
 				/>
 			)}
 			<Footer />

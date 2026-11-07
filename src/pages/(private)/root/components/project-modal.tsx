@@ -4,10 +4,13 @@ import useDeleteProject from "../../../../hooks/use-delete-project"
 import useUpdateProject from "../../../../hooks/use-update-project"
 import type { Project } from "../../../../types/interfaces/project"
 import Modal from "./modal"
+import type { Stack } from "../../../../types/interfaces/stack"
+import Stacks from "../../../(public)/home/components/stacks"
 
 type ProjectModalProps = {
 	onClose: () => void
 	editingProject: Project | null
+	stacks: Stack[]
 }
 
 const INIT_FORM = {
@@ -15,11 +18,13 @@ const INIT_FORM = {
 	description: "",
 	gitHubUrl: "",
 	thumbnailUrl: "",
+	stackIds: [] as number[]
 }
 
 export default function ProjectModal({
 	onClose,
 	editingProject,
+	stacks
 }: ProjectModalProps) {
 	const [formData, setFormData] = useState(INIT_FORM)
 	const { mutate: createProject } = useCreateProject()
@@ -33,13 +38,14 @@ export default function ProjectModal({
 				description: editingProject.description,
 				gitHubUrl: editingProject.gitHubUrl ?? "",
 				thumbnailUrl: editingProject.thumbnailUrl ?? "",
+				stackIds: editingProject.stacks.map(stack => stack.id)
 			})
 
 		return
 	}, [editingProject])
 
 	function handleFormChange(
-		event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+		event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>,
 	) {
 		event.preventDefault()
 
@@ -61,13 +67,22 @@ export default function ProjectModal({
 
 		if (editingProject) {
 			updateProject(
-				{ id: editingProject.id, data: formData },
+				{ id: editingProject.id, data: {...formData, publishedAt: editingProject.publishedAt} },
 				{ onSuccess: handleSuccess },
 			)
 			return
 		}
 
 		createProject(formData, { onSuccess: handleSuccess })
+	}
+
+	function toggleStack(stack: Stack) {
+    setFormData((prev) => ({
+			...prev,
+			stackIds: prev.stackIds.includes(stack.id)
+				? prev.stackIds.filter((id) => id !== stack.id)
+				: [...prev.stackIds, stack.id]
+		}))
 	}
 
 	return (
@@ -133,6 +148,13 @@ export default function ProjectModal({
 						value={formData.thumbnailUrl}
 						onChange={(event) => handleFormChange(event)}
 					/>
+				</label>
+				<label
+					className="flex flex-col gap-2 text-lg"
+					htmlFor="project-stacks"
+				>
+					<span>$ stacks</span>
+					<Stacks stacks={stacks} onStackClick={toggleStack} selectedStacks={stacks.filter(stack => formData.stackIds.includes(stack.id))} />
 				</label>
 				<div className="flex items-center justify-between gap-4 pt-2">
 					{editingProject && (
